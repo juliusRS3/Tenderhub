@@ -5,8 +5,8 @@
 window.TENDERHUB_CONFIG = {
   appName: "TenderHub",
   // The public web address of your app (used in invitation emails).
-  appUrl: "https://tenderhub.live",
-  supportEmail: "support@tenderhub.live",
+  appUrl: "https://tenderhub.my",
+  supportEmail: "info@pacificedgetrading.com",
 
   // ---------------------------------------------------------------
   // 1) BACKEND (Supabase). Leave both empty to run in DEMO MODE:

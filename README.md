@@ -35,8 +35,8 @@ With the Supabase keys left empty, the app runs in **demo mode**. In demo mode, 
 
 1. **Create the database.** Make a free project at supabase.com. Open **SQL Editor → New query**, paste all of `supabase/schema.sql`, and click **Run**. The last line makes `julius.stating@gmail.com` the admin; change it first if needed.
 2. **Connect the app.** In Supabase, open **Project Settings → API**. Copy the **Project URL** and the **anon public** key into `supabaseUrl` and `supabaseAnonKey` in `config.js`. The anon key is meant to be public, and the access rules protect the data.
-3. **Set the sign-in links.** In Supabase, open **Authentication → URL Configuration**. Set **Site URL** to `https://tenderhub.live` and add `https://tenderhub.live/**` to the redirect URLs.
-4. **Publish the site.** Host this repository on any static host, such as Netlify, Cloudflare Pages or GitHub Pages, and point the `tenderhub.live` domain at it.
+3. **Set the sign-in links.** In Supabase, open **Authentication → URL Configuration**. Set **Site URL** to `https://tenderhub.my` and add `https://tenderhub.my/**` to the redirect URLs.
+4. **Publish the site.** Host this repository on any static host, such as Vercel, Netlify or Cloudflare Pages, and point the `tenderhub.my` domain at it.
 5. **Payments (optional).** Paste your PayPal subscription links into `config.js`. Until you do, "Subscribe" emails you an upgrade request. Activate plans in the app under **Admin → Users & Plans**.
 
 If you change plan limits in `config.js`, change them in `supabase/schema.sql` too (`plan_limit` and `plan_confidential`), then re-run those two functions in the SQL Editor.
