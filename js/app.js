@@ -7,6 +7,7 @@ import { RfqDetail, Compare } from "./pages/rfq.js";
 import { Invitations, QuotePage } from "./pages/supplier.js";
 import { Billing } from "./pages/billing.js";
 import { Support, AdminInbox, AdminUsers } from "./pages/support.js";
+import { KeyGate } from "./pages/keys.js";
 
 function useHash() {
   const get = () => (location.hash.replace(/^#/, "") || "/");
@@ -61,6 +62,9 @@ function App() {
     else { if (!hadUser.current) sessionStorageSafe("set", path); page = html`<${Login} note="Please sign in to continue." />`; }
     return html`${bootErr && html`<div class="demo-bar" style="background:#991b1b">Could not connect to the server: ${bootErr.message}</div>`}${page}`;
   }
+
+  // ---- signed in, but encryption keys need setting up / unlocking on this device
+  if (user.key_status && user.key_status !== "ok") return html`<${KeyGate} user=${user} />`;
 
   // ---- signed in, first time: pick buyer / supplier
   if (!user.role) return html`<${Welcome} user=${user} />`;

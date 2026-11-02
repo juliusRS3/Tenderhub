@@ -142,8 +142,8 @@ function Bidders({ rfq, inv, quotes, user, onChange }) {
   const locked = ["closed", "awarded"].includes(statusOf(rfq));
   const add = async (em) => { await store.invite(rfq.id, em); setQ(""); setEmail(""); setRes([]); toast("Supplier invited"); onChange(); };
   const quoted = (em) => quotes.some((x) => (x.supplier_email || "").toLowerCase() === em.toLowerCase());
-  const mailto = (em) => {
-    const link = `${CFG.appUrl.replace(/\/$/, "")}/#/quote/${rfq.id}`;
+  const mailto = (em, secure) => {
+    const link = secure || `${CFG.appUrl.replace(/\/$/, "")}/#/quote/${rfq.id}`;
     const body = `Hello,\n\n${user.company || user.name} invites you to submit a quotation for:\n\n${rfq.title}\nDeadline: ${fmtDateTime(rfq.deadline)}\n\nView the RFQ and submit your quote here:\n${link}\n\nIf you are new to TenderHub, please sign up with this email address (${em}) so the RFQ appears in your account.\n\nRegards,\n${user.name}`;
     return `mailto:${em}?subject=${encodeURIComponent("Invitation to quote: " + rfq.title)}&body=${encodeURIComponent(body)}`;
   };
@@ -166,7 +166,7 @@ function Bidders({ rfq, inv, quotes, user, onChange }) {
           <span class="avatar" style="width:30px;height:30px;font-size:11px;background:${i.registered ? "" : "#cbd5e1"}">${initials(i.company || i.name || i.email)}</span>
           <div class="grow"><div class="small" style="font-weight:600;overflow:hidden;text-overflow:ellipsis">${i.company || i.name || i.email}</div>
             <div class="tiny" style="color:${quoted(i.email) ? "var(--green)" : i.registered ? "var(--muted)" : "var(--amber)"}">${quoted(i.email) ? "Quote received" : i.acknowledged ? "Acknowledged" : i.registered ? "Registered · " + i.email : "Awaiting signup · " + i.email}</div></div>
-          <a class="icon-btn" href=${mailto(i.email)} title="Send email invitation" aria-label="Send email invitation"><${Icon} n="mail" cls="sm" /></a>
+          <a class="icon-btn" href=${mailto(i.email, i.link)} title="Send email invitation" aria-label="Send email invitation"><${Icon} n="mail" cls="sm" /></a>
           ${!quoted(i.email) && !locked && html`<button class="icon-btn" title="Remove" aria-label="Remove supplier" onClick=${() => store.removeInvitation(i.id).then(onChange).catch(errToast)}><${Icon} n="x" cls="sm" /></button>`}
         </div>`)}</div>`}
       ${inv.length > 0 && rfq.status === "draft" && html`<div class="hint">Suppliers can see the RFQ once you publish it. Use the <${Icon} n="mail" cls="sm" /> button to email them the link.</div>`}

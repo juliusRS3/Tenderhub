@@ -110,9 +110,27 @@ export function Settings({ user }) {
       <div><h2>Plan</h2><p class="muted small">${plan.name} — ${plan.limit === Infinity ? "unlimited" : plan.limit} active RFQs</p></div>
       <a class="btn ghost" href="#/billing">Manage plan</a>
     </div>
+    ${store.mode === "live" && html`<${ChangePassword} />`}
     <div class="card card-pad row spread wrap">
       <div><h2>Sign out</h2><p class="muted small">Sign out of TenderHub on this device.</p></div>
       <${Btn} cls="ghost" onClick=${() => store.signOut().then(() => go("/"))}><${Icon} n="logout" cls="sm" /> Sign out</${Btn}>
     </div>
+  </div>`;
+}
+
+function ChangePassword() {
+  const [f, setF] = useState({ cur: "", pw: "", pw2: "" });
+  const save = async () => {
+    if (f.pw !== f.pw2) throw new Error("The two new passwords don't match.");
+    await store.changePassword(f.cur, f.pw); setF({ cur: "", pw: "", pw2: "" }); toast("Password changed");
+  };
+  return html`<div class="card card-pad stack">
+    <div><h2>Password & encryption</h2><p class="muted small">Your RFQs and quotes are encrypted on your device. Your password unlocks them; keep your recovery code safe in case you forget it.</p></div>
+    <div class="grid3">
+      <div class="field"><label>Current password</label><input class="input" type="password" autocomplete="current-password" value=${f.cur} onInput=${(e) => setF({ ...f, cur: e.target.value })} /></div>
+      <div class="field"><label>New password</label><input class="input" type="password" minlength="6" autocomplete="new-password" value=${f.pw} onInput=${(e) => setF({ ...f, pw: e.target.value })} /></div>
+      <div class="field"><label>Repeat new password</label><input class="input" type="password" minlength="6" autocomplete="new-password" value=${f.pw2} onInput=${(e) => setF({ ...f, pw2: e.target.value })} /></div>
+    </div>
+    <div><${Btn} cls="ghost" disabled=${!f.cur || !f.pw} onClick=${save}><${Icon} n="key" cls="sm" /> Change password</${Btn}></div>
   </div>`;
 }

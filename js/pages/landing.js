@@ -10,7 +10,7 @@ export function Landing() {
   const sec = [
     ["lock", "Invitation-Only Access", "RFQ details are never public. Only suppliers you personally invite can view your requirements and submit quotes."],
     ["eye", "Confidentiality Controls", "Mark sensitive RFQs as confidential. Suppliers must acknowledge privacy obligations before accessing your documents."],
-    ["key", "Encrypted Data", "All data is transmitted over HTTPS with TLS encryption. Your RFQ data is stored securely and never shared with third parties."],
+    ["key", "End-to-End Encrypted", "RFQs, item lists, prices and quotes are encrypted on your device before they are saved. Only you and the suppliers you invite hold the keys — not other companies, and not TenderHub."],
     ["user", "Access Control", "Only authenticated users with verified accounts can participate. Every action is tied to a verified identity."],
     ["activity", "Full Audit Trail", "Every quote submission and status change is logged. You always know exactly who has interacted with your RFQ."],
     ["trash", "Your Data, Your Control", "Delete your RFQs and quotes at any time. We never sell or share your procurement data with competitors or third parties."]

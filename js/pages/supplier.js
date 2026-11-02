@@ -77,7 +77,9 @@ export function QuotePage({ user, id }) {
     ${quote?.status === "not_awarded" && html`<div class="alert info"><${Icon} n="alert" /><div>This RFQ was awarded to another supplier. Thank you for quoting.</div></div>`}
     ${s === "closed" && !quote && html`<div class="alert warn"><${Icon} n="clock" /><div>This RFQ is closed and no longer accepting quotes.</div></div>`}
 
-    ${gated ? html`<${Gate} rfq=${rfq} onDone=${reload} />` : html`
+    ${rfq._locked ? html`<div class="alert warn" style="max-width:680px"><${Icon} n="lock" /><div><b>This RFQ is encrypted and not yet unlocked for you.</b>
+      <div class="small" style="margin-top:4px">Open the invitation link the buyer emailed you (it contains your access key), signed in as <b>${user.email}</b>. Or ask the buyer to open the RFQ in TenderHub — your access unlocks automatically.</div></div></div>`
+    : gated ? html`<${Gate} rfq=${rfq} onDone=${reload} />` : html`
       <div class="detail-grid">
         <div class="stack">
           <${RfqInfo} rfq=${rfq} />
