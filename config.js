@@ -7,6 +7,10 @@ window.TENDERHUB_CONFIG = {
   // The public web address of your app (used in invitation emails).
   appUrl: "https://tenderhub.my",
   supportEmail: "info@pacificedgetrading.com",
+  // Company shown in the footer, Terms of Use and Privacy Policy.
+  operator: "Pacific Edge Trading Sdn. Bhd.",
+  operatorRegNo: "202501031124",
+  operatorWebsite: "https://www.pacificedgetrading.com",
 
   // ---------------------------------------------------------------
   // 1) BACKEND (Supabase). Leave both empty to run in DEMO MODE:

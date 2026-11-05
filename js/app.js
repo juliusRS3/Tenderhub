@@ -8,6 +8,7 @@ import { Invitations, QuotePage } from "./pages/supplier.js";
 import { Billing } from "./pages/billing.js";
 import { Support, AdminInbox, AdminUsers } from "./pages/support.js";
 import { KeyGate } from "./pages/keys.js";
+import { Terms, Privacy } from "./pages/legal.js";
 
 function useHash() {
   const get = () => (location.hash.replace(/^#/, "") || "/");
@@ -51,6 +52,10 @@ function App() {
   }, []);
 
   if (user === undefined) return html`<div class="boot"><div class="spinner"></div></div>`;
+
+  // Legal pages are open to everyone, signed in or not.
+  if (route.page === "terms") return html`<${Terms} />`;
+  if (route.page === "privacy") return html`<${Privacy} />`;
 
   // ---- signed out
   if (!user) {

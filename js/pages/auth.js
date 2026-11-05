@@ -48,6 +48,7 @@ export function Signup() {
       <div class="field"><label for="em2">Work email</label><input id="em2" class="input" type="email" required autocomplete="email" value=${f.email} onInput=${(e) => setF({ ...f, email: e.target.value })} />
         <span class="hint">Suppliers: use the same email the buyer invited, so their RFQs appear automatically.</span></div>
       <div class="field"><label for="pw2">Password</label><input id="pw2" class="input" type="password" minlength="6" required autocomplete="new-password" value=${f.password} onInput=${(e) => setF({ ...f, password: e.target.value })} /><span class="hint">At least 6 characters.</span></div>
+      <p class="tiny muted">By creating an account you agree to the <a href="#/terms" target="_blank">Terms of Use</a> and acknowledge the <a href="#/privacy" target="_blank">Privacy Policy</a>.</p>
       <${Btn} type="submit" cls="primary block" onClick=${submit}>Create account</${Btn}>
       <p class="small muted" style="text-align:center">Already have an account? <a href="#/login">Sign in</a></p>
     </form></${Shell}>`;

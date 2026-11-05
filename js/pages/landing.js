@@ -1,9 +1,11 @@
 import { html, Icon, CFG } from "../ui.js";
 
+const pilotHref = () => `mailto:${CFG.supportEmail}?subject=${encodeURIComponent("TenderHub pilot request")}&body=${encodeURIComponent("Hello,\n\nWe would like to run a real RFQ on TenderHub.\n\nCompany:\nContact person:\nPhone:\nWhat we buy (e.g. spare parts, services, consumables):\nRoughly how many RFQs per month:\n\nThank you.")}`;
+
 export function Landing() {
   const steps = [
     ["file", "Create an RFQ", "Define what you need: description, line items, quantities, and a submission deadline. Or upload your Excel item list."],
-    ["users", "Invite Suppliers", "Search and invite qualified suppliers to your bidders list. They get notified instantly."],
+    ["users", "Invite Suppliers", "Invite suppliers by email or pick registered suppliers. Each one gets a secure link to your RFQ."],
     ["quotes", "Receive Quotes", "Suppliers submit itemised quotes. All bids are tracked and organised automatically."],
     ["chart", "Compare & Award", "Side-by-side bid comparison with the lowest price highlighted. Award the contract with one click."]
   ];
@@ -18,7 +20,7 @@ export function Landing() {
   return html`<div class="lp">
     <nav class="lp-nav">
       <a class="brand" href="#/" style="padding:0"><img src="icons/logo-96.png" alt="" />${CFG.appName}</a>
-      <div class="row"><a class="btn ghost sm" href="#/login">Sign in</a><a class="btn primary sm" href="#/signup">Get started</a></div>
+      <div class="row"><a class="btn ghost sm lp-pilot" href=${pilotHref()}>Request a pilot</a><a class="btn ghost sm" href="#/login">Sign in</a><a class="btn primary sm" href="#/signup">Get started</a></div>
     </nav>
 
     <section class="lp-hero">
@@ -30,9 +32,9 @@ export function Landing() {
         <a class="btn ghost" href="#/login"><${Icon} n="logout" cls="sm" /> Sign in</a>
       </div>
       <div class="card lp-stats">
-        <div><div class="v">3×</div><div class="l">Faster procurement</div><div class="s">vs. email-based RFQs</div></div>
-        <div><div class="v">5+</div><div class="l">Average bids per RFQ</div><div class="s">competitive quotes</div></div>
-        <div><div class="v">&lt;24h</div><div class="l">Time to first quote</div><div class="s">from publishing</div></div>
+        <div><div class="v"><${Icon} n="sheet" /></div><div class="l">Excel item upload</div><div class="s">no retyping line items</div></div>
+        <div><div class="v"><${Icon} n="chart" /></div><div class="l">Side-by-side bids</div><div class="s">lowest price highlighted</div></div>
+        <div><div class="v"><${Icon} n="lock" /></div><div class="l">End-to-end encrypted</div><div class="s">only you and your invitees</div></div>
       </div>
     </section>
 
@@ -65,10 +67,14 @@ export function Landing() {
     </section>
 
     <section class="lp-sec" style="text-align:center">
-      <h2 style="margin-bottom:12px">Start your first RFQ today</h2>
-      <p class="muted">Free plan includes 2 active RFQs. No credit card needed.</p>
-      <div class="lp-cta"><a class="btn primary" href="#/signup">Create free account <${Icon} n="arrow" cls="sm" /></a></div>
+      <h2 style="margin-bottom:12px">Ready to run a real tender?</h2>
+      <p class="muted" style="max-width:560px;margin:0 auto">Try the full buyer and supplier flow now, or talk to us about a pilot for your procurement team. Free plan includes 2 active RFQs, no credit card needed.</p>
+      <div class="lp-cta"><a class="btn primary" href=${pilotHref()}><${Icon} n="mail" cls="sm" /> Request a pilot</a>
+        <a class="btn ghost" href="#/signup">Create free account <${Icon} n="arrow" cls="sm" /></a></div>
     </section>
-    <footer class="lp-foot">© ${new Date().getFullYear()} ${CFG.appName} · <a href=${"mailto:" + CFG.supportEmail}>${CFG.supportEmail}</a></footer>
+    <footer class="lp-foot">
+      <div>© ${new Date().getFullYear()} ${CFG.appName} · Developed and operated by ${CFG.operator}</div>
+      <div style="margin-top:6px"><a href="#/terms">Terms of Use</a> · <a href="#/privacy">Privacy Policy</a> · <a href=${pilotHref()}>Request a pilot</a> · <a href=${"mailto:" + CFG.supportEmail}>${CFG.supportEmail}</a></div>
+    </footer>
   </div>`;
 }
