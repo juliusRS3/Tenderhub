@@ -1,11 +1,11 @@
 // Offline support: caches the app files so TenderHub opens even with a weak connection.
 // When you change any file, bump the version number below so users get the update.
-const VERSION = "tenderhub-v6";
+const VERSION = "tenderhub-v7";
 const FILES = [
   "./", "index.html", "config.js", "manifest.webmanifest", "css/app.css",
   "js/app.js", "js/ui.js", "js/store.js", "js/store-local.js", "js/store-supabase.js", "js/crypto.js",
   "js/pages/landing.js", "js/pages/auth.js", "js/pages/buyer.js", "js/pages/rfq.js",
-  "js/pages/supplier.js", "js/pages/billing.js", "js/pages/support.js", "js/pages/keys.js", "js/pages/legal.js",
+  "js/pages/supplier.js", "js/pages/billing.js", "js/pages/support.js", "js/pages/keys.js", "js/pages/legal.js", "js/install.js",
   "js/vendor/preact-htm.js", "icons/icon-192.png", "icons/logo-96.png", "icons/favicon.png"
 ];
 

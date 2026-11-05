@@ -1,4 +1,5 @@
 import { html, Icon, CFG } from "../ui.js";
+import { InstallButton } from "../install.js";
 
 const pilotHref = () => `mailto:${CFG.supportEmail}?subject=${encodeURIComponent("TenderHub pilot request")}&body=${encodeURIComponent("Hello,\n\nWe would like to run a real RFQ on TenderHub.\n\nCompany:\nContact person:\nPhone:\nWhat we buy (e.g. spare parts, services, consumables):\nRoughly how many RFQs per month:\n\nThank you.")}`;
 
@@ -20,7 +21,7 @@ export function Landing() {
   return html`<div class="lp">
     <nav class="lp-nav">
       <a class="brand" href="#/" style="padding:0"><img src="icons/logo-96.png" alt="" />${CFG.appName}</a>
-      <div class="row"><a class="btn ghost sm lp-pilot" href=${pilotHref()}>Request a pilot</a><a class="btn ghost sm" href="#/login">Sign in</a><a class="btn primary sm" href="#/signup">Get started</a></div>
+      <div class="row"><${InstallButton} cls="btn ghost sm" label="Install" /><a class="btn ghost sm lp-pilot" href=${pilotHref()}>Request a pilot</a><a class="btn ghost sm lp-signin" href="#/login">Sign in</a><a class="btn primary sm" href="#/signup">Get started</a></div>
     </nav>
 
     <section class="lp-hero">

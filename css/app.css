@@ -257,3 +257,16 @@ p { margin: 0; }
 .legal li { margin: 4px 0; }
 .legal .box { background: #eef0f3; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 14px 0; }
 @media (max-width: 560px) { .lp-nav .lp-pilot { display: none; } }
+
+/* install help */
+.install-steps { padding-left: 20px; margin: 0; }
+.install-steps li { margin: 8px 0; line-height: 1.55; }
+.install-chip { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: 1px solid var(--line); border-radius: 6px; vertical-align: middle; color: var(--blue); }
+.install-btn { gap: 6px; }
+@media (max-width: 560px) {
+  .lp-nav { padding: 14px 16px; gap: 8px; }
+  .lp-nav .row { gap: 6px; }
+  .lp-nav .btn.sm { padding: 7px 10px; }
+  .lp-nav .install-txt { display: none; }
+}
+@media (max-width: 380px) { .lp-nav .lp-signin { display: none; } }

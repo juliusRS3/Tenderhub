@@ -9,6 +9,7 @@ import { Billing } from "./pages/billing.js";
 import { Support, AdminInbox, AdminUsers } from "./pages/support.js";
 import { KeyGate } from "./pages/keys.js";
 import { Terms, Privacy } from "./pages/legal.js";
+import { InstallButton } from "./install.js";
 
 function useHash() {
   const get = () => (location.hash.replace(/^#/, "") || "/");
@@ -119,6 +120,7 @@ function Shell({ user, route, children }) {
   const MeMenu = ({ mobile }) => html`<div class=${"menu " + (mobile ? "mobile" : "")} onClick=${() => setMenu(false)}>
       <div style="padding:8px 10px 10px;border-bottom:1px solid var(--line-2);margin-bottom:4px"><div style="font-weight:650">${user.name}</div><div class="tiny muted">${user.email}</div>${user.company && html`<div class="tiny muted">${user.company}</div>`}</div>
       <a href="#/settings"><${Icon} n="sliders" cls="sm" /> Account settings</a>
+      <${InstallButton} menuItem label="Install app" />
       ${mobile && html`<button onClick=${() => switchMode(buyer ? "supplier" : "buyer")}><${Icon} n="swap" cls="sm" /> Switch to ${buyer ? "Supplier" : "Buyer"} view</button>`}
       ${mobile && user.is_admin && html`<a href="#/admin/support"><${Icon} n="shield" cls="sm" /> Support Inbox</a><a href="#/admin/users"><${Icon} n="users" cls="sm" /> Users & Plans</a>`}
       ${store.mode === "demo" && html`<button onClick=${() => { store.resetDemo(); go("/login"); }}><${Icon} n="swap" cls="sm" /> Reset demo data</button>`}
